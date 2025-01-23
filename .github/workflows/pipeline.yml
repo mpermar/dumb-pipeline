@@ -9,12 +9,16 @@ jobs:
       - name: Packaging, Verifying and Publishing
         run: echo "Package phase completed"
 
-  distribute:
+  registry-1:
     needs: package
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        registry: [registry1, registry2]
     steps:
-      - name: Distributing to ${{ matrix.registry }}
-        run: echo "Distribution to ${{ matrix.registry}} completed"
+      - name: Distributing to DockerHub
+        run: echo "Distribution to DockerHub completed"
+
+  registry-2:
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Distributing to Artifactory
+        run: echo "Distribution to Artifactory completed"
