@@ -1,0 +1,20 @@
+name: CI
+
+on: [push, workflow_dispatch]
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Packaging, Verifying and Publishing
+        run: echo "Package phase completed"
+
+  distribute:
+    needs: package
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        registry: [registry1, registry2]
+    steps:
+      - name: Distributing to ${{ matrix.registry }}
+        run: echo "Distribution to ${{ matrix.registry}} completed"
